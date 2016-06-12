@@ -1,36 +1,36 @@
 #!/bin/sh
 
 # CreateConfFiles & ConfVars
-mkdir -p /ownCloudVolume/.ownCloudConf/
+mkdir -p /ownCloudVolume/ownCloudConf/
 mkdir -p /ownCloudVolume/ownCloudData/
-mkdir -p /ownCloudVolume/.ownCloudLog/
+mkdir -p /ownCloudVolume/ownCloudLog/
 
 # ServerAddress
-if [ ! -f /ownCloudVolume/.ownCloudConf/ServerURL ] ; then
- echo "https://owncloud." > /ownCloudVolume/.ownCloudConf/ServerURL
+if [ ! -f /ownCloudVolume/ownCloudConf/ServerURL ] ; then
+ echo "https://owncloud." > /ownCloudVolume/ownCloudConf/ServerURL
 fi
-ServerURL=`cat /ownCloudVolume/.ownCloudConf/ServerURL`
+ServerURL=`cat /ownCloudVolume/ownCloudConf/ServerURL`
 export ServerURL
 
 # SyncPeriod
-if [ ! -f /ownCloudVolume/.ownCloudConf/SyncCronPeriod ] ; then
+if [ ! -f /ownCloudVolume/ownCloudConf/SyncCronPeriod ] ; then
 	# Standard is one check every 5 minutes
- 	echo "*/5 * * * *" > /ownCloudVolume/.ownCloudConf/SyncCronPeriod
+ 	echo "*/5 * * * *" > /ownCloudVolume/ownCloudConf/SyncCronPeriod
 fi
-SyncCronPeriod=`cat /ownCloudVolume/.ownCloudConf/SyncCronPeriod`
+SyncCronPeriod=`cat /ownCloudVolume/ownCloudConf/SyncCronPeriod`
 export SyncCronPeriod
 
 # Credentials
-if [ ! -f /ownCloudVolume/.ownCloudConf/netrcStyleConf ] ; then
- echo "default login [yourOwncloudUserName] password [yourOwncloudUserPassword]" > /ownCloudVolume/.ownCloudConf/netrcStyleConf
+if [ ! -f /ownCloudVolume/ownCloudConf/netrcStyleConf ] ; then
+ echo "default login [yourOwncloudUserName] password [yourOwncloudUserPassword]" > /ownCloudVolume/ownCloudConf/netrcStyleConf
 fi
 if [ ! -f ~/.netrc ] ; then
-	ln -s /ownCloudVolume/.ownCloudConf/netrcStyleConf ~/.netrc
+	ln -s /ownCloudVolume/ownCloudConf/netrcStyleConf ~/.netrc
 fi
 
 # /sync-exclude.lst 
-if [ ! -f /ownCloudVolume/.ownCloudConf/sync-exclude.lst  ] ; then
- cp /sync-exclude.lst /ownCloudVolume/.ownCloudConf/sync-exclude.lst
+if [ ! -f /ownCloudVolume/ownCloudConf/sync-exclude.lst  ] ; then
+ cp /sync-exclude.lst /ownCloudVolume/ownCloudConf/sync-exclude.lst
 fi
 
 if [ $DEBUG ] ; then
