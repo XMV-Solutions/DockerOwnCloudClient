@@ -10,6 +10,7 @@ MAINTAINER David Koller <david.koller@xmv-solutions.com>
 VOLUME /ownCloudVolume
 
 # Start Sync
-ADD createSyncCommand.sh /createSyncCommand.sh
+ADD readConfig.sh /readConfig.sh
+ADD sync.sh /sync.sh
 ADD sync-exclude.lst /sync-exclude.lst 
-CMD /createSyncCommand.sh
+CMD /readConfig.sh
