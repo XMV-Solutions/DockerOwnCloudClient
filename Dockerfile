@@ -13,4 +13,5 @@ VOLUME /ownCloudVolume
 ADD readConfig.sh /readConfig.sh
 ADD sync.sh /sync.sh
 ADD sync-exclude.lst /sync-exclude.lst 
+RUN chmod 755 /*.sh
 CMD /readConfig.sh
