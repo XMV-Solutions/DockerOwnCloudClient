@@ -6,9 +6,10 @@ ocDATADIR="$ocVOLUME/ownCloudData/"
 ocLOGDIR="$ocVOLUME/.ownCloudLog/"
 ocEXCLUDE="$ocVOLUME/.sync-exclude.lst"
 
-import_config ()
+function import_config ()
 {
-	cat $ocCONFIGFILE | sed 's/ *= */=/g' > $ocCONFIGFILE
+	cat $ocCONFIGFILE | sed 's/ *= */=/g' > ${ocCONFIGFILE}.new
+	mv ${ocCONFIGFILE}.new $ocCONFIGFILE 
 	source $ocCONFIGFILE
 }
 
