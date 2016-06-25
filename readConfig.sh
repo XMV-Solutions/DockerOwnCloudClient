@@ -4,8 +4,8 @@
 source /constants.sh
 
 # Startup Config File
-if [ ! -f $CONFIGFILE ] ; then
-	cat /config.startup.ini > $CONFIGFILE
+if [ ! -f $ocCONFIGFILE ] ; then
+	cat /config.startup.ini > $ocCONFIGFILE
 fi
 
 # Test config
