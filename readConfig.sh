@@ -1,7 +1,7 @@
 #!/bin/sh
 
 # CreateConfFiles
-. /constants.sh
+source /constants.sh
 
 # Startup Config File
 if [ ! -f $CONFIGFILE ] ; then

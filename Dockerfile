@@ -17,4 +17,5 @@ ADD readConfig.sh /readConfig.sh
 ADD sync.sh /sync.sh
 ADD sync-exclude.lst /sync-exclude.lst 
 RUN chmod 755 /*.sh
+RUN chmod 755 /*.ini
 CMD /readConfig.sh

@@ -1,6 +1,6 @@
 #!/bin/sh
 
-. constants.sh
+source constants.sh
 import_config
 
 if [ $DEBUG ] ; then

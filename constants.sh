@@ -8,7 +8,8 @@ ocEXCLUDE="$VOLUME/.sync-exclude.lst"
 
 function import_config()
 {
-	source <(grep = $ocCONFIGFILE | sed 's/ *= */=/g')
+	cat $ocCONFIGFILE | sed 's/ *= */=/g' > $ocCONFIGFILE
+	source $ocCONFIGFILE
 }
 
 export ocVOLUME ocCONFIGFILE ocDATADIR ocLOGDIR ocEXCLUDE

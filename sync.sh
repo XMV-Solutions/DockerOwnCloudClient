@@ -1,6 +1,6 @@
 #!/bin/sh 
 
-. /constants.sh
+source /constants.sh
 import_config
 
 if ps ax | grep sync.s | grep ync.sh -q ; then
