@@ -5,8 +5,14 @@ source /constants.sh
 
 # Startup Config File
 if [ ! -f $ocCONFIGFILE ] ; then
+	# Copy Startup Config File
 	cat /config.startup.ini > $ocCONFIGFILE
-fi
+elif  [ ! "$(cat /config.sum 2>&1)" == "$(sha1sum $ocCONFIGFILE)" ] ; then 
+	# When Configfile changed, trim " = " to "=" and save
+	cat $ocCONFIGFILE | sed 's/ *= */=/g' > ${ocCONFIGFILE}.new
+	mv ${ocCONFIGFILE}.new $ocCONFIGFILE 
+	sha1sum $ocCONFIGFILE > /config.sum
+fi 
 
 # Test config
 if /testconfig.sh ; then
