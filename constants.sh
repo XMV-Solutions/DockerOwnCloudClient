@@ -1,10 +1,10 @@
 #!/bin/sh
 
 ocVOLUME="/ownCloudVolume"
-ocCONFIGFILE="$VOLUME/ownCloudConf.ini"
-ocDATADIR="$VOLUME/ownCloudData/"
-ocLOGDIR="$VOLUME/.ownCloudLog/"
-ocEXCLUDE="$VOLUME/.sync-exclude.lst"
+ocCONFIGFILE="$ocVOLUME/ownCloudConf.ini"
+ocDATADIR="$ocVOLUME/ownCloudData/"
+ocLOGDIR="$ocVOLUME/.ownCloudLog/"
+ocEXCLUDE="$ocVOLUME/.sync-exclude.lst"
 
 import_config ()
 {
