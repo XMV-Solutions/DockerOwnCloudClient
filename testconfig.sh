@@ -15,7 +15,7 @@ if [ ! $ocServerURL ] ; then
 	exit 1
 fi
 
-if [ ! $SyncCronPeriod ] ; then
+if [ ! $ocSyncCronPeriod ] ; then
 	echo "SyncCronPeriod is missing"
 	exit 2
 fi
