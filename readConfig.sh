@@ -12,6 +12,7 @@ elif  [ ! "$(cat /config.sum 2>&1)" == "$(sha1sum $ocCONFIGFILE)" ] ; then
 	cat $ocCONFIGFILE | sed 's/ *= */=/g' > ${ocCONFIGFILE}.new
 	mv ${ocCONFIGFILE}.new $ocCONFIGFILE 
 	sha1sum $ocCONFIGFILE > /config.sum
+	echo "Updated config at $(date -Iminutes)"
 fi 
 
 # Test config

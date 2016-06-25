@@ -12,11 +12,11 @@ else
 	yesterday=$(date -I -d @"$(( $(date +%s) - 86400 ))" )
 	
 	# Backup yesterdays logs, make logfolder for today
-	if [ ! -f $ocLOGDIR/$today ] ; then
+	if [ ! -d $ocLOGDIR/$today ] ; then
 		mkdir -p $ocLOGDIR/$today
-		if [ -f $ocLOGDIR/${yesterday} ] ; then
-			tar cjf  $ocLOGDIR/${yesterday}.tbz  $ocLOGDIR/${yesterday} 2>&1 > /dev/null || echo "No logs saved from yesterday"
-			rm -rf  $ocLOGDIR/${yesterday} 2>&1 > /dev/null || echo "No logs removed from yesterday"
+		if [ -d $ocLOGDIR/${yesterday} ] ; then
+			tar cjf  ${ocLOGDIR}/${yesterday}.tbz  $ocLOGDIR/${yesterday} > /dev/null 2>&1 || echo "No logs saved from yesterday" && echo "backuped yesterdays logs to ${ocLOGDIR}/${yesterday}.tbz"
+			rm -rf  $ocLOGDIR/${yesterday} > /dev/null 2>&1 || echo "No logs removed from yesterday"		
 		fi
 	fi
 	

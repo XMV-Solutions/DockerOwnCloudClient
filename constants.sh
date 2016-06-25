@@ -2,8 +2,8 @@
 
 ocVOLUME="/ownCloudVolume"
 ocCONFIGFILE="$ocVOLUME/ownCloudConf.ini"
-ocDATADIR="$ocVOLUME/ownCloudData/"
-ocLOGDIR="$ocVOLUME/.ownCloudLog/"
+ocDATADIR="$ocVOLUME/ownCloudData"
+ocLOGDIR="$ocVOLUME/.ownCloudLog"
 ocEXCLUDE="$ocVOLUME/.sync-exclude.lst"
 
 import_config ()
