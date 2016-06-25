@@ -44,7 +44,7 @@ if ps ax | grep cro | grep nd 2>&1 >/dev/null ; then
 	let x++	
 else
 	export x=1
-	crond -f -d 8
+	crond -f -d 8 &
 fi
 
 exit 0
