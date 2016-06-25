@@ -10,6 +10,9 @@ MAINTAINER David Koller <david.koller@xmv-solutions.com>
 VOLUME /ownCloudVolume
 
 # Start Sync
+ADD constants.sh /constants.sh
+ADD config.startup.ini /config.startup.ini
+ADD testconfig.sh /testconfig.sh
 ADD readConfig.sh /readConfig.sh
 ADD sync.sh /sync.sh
 ADD sync-exclude.lst /sync-exclude.lst 

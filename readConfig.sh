@@ -1,52 +1,42 @@
 #!/bin/sh
 
-# CreateConfFiles & ConfVars
-mkdir -p /ownCloudVolume/ownCloudConf/
-mkdir -p /ownCloudVolume/ownCloudData/
-mkdir -p /ownCloudVolume/ownCloudLog/
+# CreateConfFiles
+. /constants.sh
 
-# ServerAddress
-if [ ! -f /ownCloudVolume/ownCloudConf/ServerURL ] ; then
- echo "https://owncloud." > /ownCloudVolume/ownCloudConf/ServerURL
-fi
-ServerURL=`cat /ownCloudVolume/ownCloudConf/ServerURL`
-export ServerURL
-
-# SyncPeriod
-if [ ! -f /ownCloudVolume/ownCloudConf/SyncCronPeriod ] ; then
-	# Standard is one check every 5 minutes
- 	echo "*/5 * * * *" > /ownCloudVolume/ownCloudConf/SyncCronPeriod
-fi
-SyncCronPeriod=`cat /ownCloudVolume/ownCloudConf/SyncCronPeriod`
-export SyncCronPeriod
-
-# Credentials
-if [ ! -f /ownCloudVolume/ownCloudConf/netrcStyleConf ] ; then
- echo "default login [yourOwncloudUserName] password [yourOwncloudUserPassword]" > /ownCloudVolume/ownCloudConf/netrcStyleConf
-fi
-if [ ! -f ~/.netrc ] ; then
-	ln -s /ownCloudVolume/ownCloudConf/netrcStyleConf ~/.netrc
+# Startup Config File
+if [ ! -f $CONFIGFILE ] ; then
+	cat /config.startup.ini > $CONFIGFILE
 fi
 
-# /sync-exclude.lst 
-if [ ! -f /ownCloudVolume/ownCloudConf/sync-exclude.lst  ] ; then
- cp /sync-exclude.lst /ownCloudVolume/ownCloudConf/sync-exclude.lst
+# Test config
+if testconfig.sh ; then
+	echo "config supported"
+else
+	echo "config failed"
+	exit 1
 fi
 
-if [ $DEBUG ] ; then
-	echo -en "SyncCronPeriod: ${SyncCronPeriod} "
-	echo -en "ServerURL: ${ServerURL} "
-	echo "netrcStyleConf: $(cat ~/.netrc) "
-	echo "Ran $x times"
+# Import Config
+import_config
+
+# Create Folders
+mkdir -p $ocDATADIR
+mkdir -p $ocLOGDIR
+
+echo "$ocNetRCStyleLogin" > ~/.netrc
+
+# sync-exclude.lst 
+if [ ! -f $ocEXCLUDE  ] ; then
+ cp /sync-exclude.lst $ocEXCLUDE
 fi
 
 # Install SyncCommand in CronTab
-echo -e "${SyncCronPeriod} /sync.sh\n* * * * * /readConfig.sh" | crontab -
+echo -e "${ocSyncCronPeriod} /sync.sh\n* * * * * /readConfig.sh" | crontab -
 
 # Run crond once
 if ps ax | grep cro | grep nd 2>&1 >/dev/null ; then 
 	let x++	
 else
-	x=1 
+	x=1
 	crond -f -d 8
 fi
