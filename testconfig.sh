@@ -1,7 +1,7 @@
 #!/bin/sh
 
 source /constants.sh
-import_config
+import_config 
 
 if [ $DEBUG ] ; then
 	echo -en "SyncCronPeriod: ${ocSyncCronPeriod} / "
