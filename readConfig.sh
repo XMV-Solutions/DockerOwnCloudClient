@@ -16,7 +16,7 @@ fi
 
 # Test config
 if /testconfig.sh ; then
-	echo "config supported"
+	true
 else
 	echo "config failed"
 	exit 1
@@ -43,8 +43,9 @@ echo -e "${ocSyncCronPeriod} /sync.sh\n* * * * * /readConfig.sh" | crontab -
 if ps ax | grep cro | grep nd 2>&1 >/dev/null ; then 
 	let x++	
 else
+	/sync.sh &
 	export x=1
-	crond -f -d 8 &
+	crond -f -d 8 
 fi
 
 exit 0
