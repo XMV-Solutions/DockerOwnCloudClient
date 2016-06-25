@@ -12,7 +12,7 @@ import_config ()
 	if [ $DEBUG ] ; then
 		echo XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
 		echo ConfigFile
-		cat $ocCONFIGFILE 
+		sha1sum $ocCONFIGFILE 
 	fi
 
 	cat $ocCONFIGFILE | sed 's/ *= */=/g' > ${ocCONFIGFILE}.new
@@ -20,7 +20,7 @@ import_config ()
 	if [ $DEBUG ] ; then
 		echo XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
 		echo ConfigFile-New
-		cat ${ocCONFIGFILE}.new
+		sha1sum ${ocCONFIGFILE}.new
 	fi
 	
 
