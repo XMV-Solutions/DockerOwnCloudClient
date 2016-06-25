@@ -37,6 +37,8 @@ echo -e "${ocSyncCronPeriod} /sync.sh\n* * * * * /readConfig.sh" | crontab -
 if ps ax | grep cro | grep nd 2>&1 >/dev/null ; then 
 	let x++	
 else
-	x=1
+	export x=1
 	crond -f -d 8
 fi
+
+exit 0

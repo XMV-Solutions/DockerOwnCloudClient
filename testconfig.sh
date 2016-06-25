@@ -10,17 +10,17 @@ if [ $DEBUG ] ; then
 	echo "Ran $x times"
 fi
 
-if [ ! $ocServerURL ] ; then
+if [ ! "$ocServerURL" ] ; then
 	echo "ServerURL is missing"
 	exit 1
 fi
 
-if [ ! $ocSyncCronPeriod ] ; then
+if [ ! "$ocSyncCronPeriod" ] ; then
 	echo "SyncCronPeriod is missing"
 	exit 2
 fi
 
-if [ ! $ocNetRCStyleLogin ] ; then
+if [ ! "$ocNetRCStyleLogin" ] ; then
 	echo "NetRCStyleLogin is missing"
 	exit 3
 fi

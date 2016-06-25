@@ -9,3 +9,5 @@ else
 	owncloudcmd --silent --non-interactive -n --exclude $ocEXCLUDE $ocDATADIR $ocServerURL \
 		> $ocLOGDIR/csync.log.`date -Iseconds` 2>&1
 fi
+
+exit 0
