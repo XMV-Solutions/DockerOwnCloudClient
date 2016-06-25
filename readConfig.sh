@@ -8,6 +8,9 @@ if [ ! -f $ocCONFIGFILE ] ; then
 	cat /config.startup.ini > $ocCONFIGFILE
 fi
 
+# Import Config
+import_config
+
 # Test config
 if /testconfig.sh ; then
 	echo "config supported"
@@ -15,9 +18,6 @@ else
 	echo "config failed"
 	exit 1
 fi
-
-# Import Config
-import_config
 
 # Create Folders
 mkdir -p $ocDATADIR
