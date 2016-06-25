@@ -9,7 +9,7 @@ if [ ! -f $CONFIGFILE ] ; then
 fi
 
 # Test config
-if testconfig.sh ; then
+if /testconfig.sh ; then
 	echo "config supported"
 else
 	echo "config failed"
